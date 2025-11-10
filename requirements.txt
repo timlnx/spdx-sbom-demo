@@ -1,0 +1,13 @@
+beartype==0.22.5
+boolean.py==5.0
+click==8.3.0
+license-expression==30.4.4
+ply==3.11
+pyparsing==3.2.5
+PyYAML==6.0.3
+rdflib==7.4.0
+rpm==0.4.0
+semantic-version==2.10.0
+spdx-tools==0.8.3
+uritools==5.0.0
+xmltodict==1.0.2
