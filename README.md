@@ -6,6 +6,11 @@ directory tree of RPMs.
 * https://pypi.org/project/spdx-tools/
 * https://github.com/spdx/tools-python/blob/ca72624a269247aadc235262a6030098b931f105/examples/spdx2_document_from_scratch.py
 
+I also took some inspiration from this PERL implementation:
+
+* https://github.com/msmeissn/rpm-list-to-sbom/tree/main
+
+
 **Usage**
 
 Imagine you have a directory of RPMs somewhere:
@@ -20,8 +25,9 @@ c10778672a98b375e5345cfef7b3e973e0c231cf  ../pkgs/figlet-2.2.5-28.20151018gita56
 c86d3ef411bd71fc28a3c4ce79906033a8440a8b  ../pkgs/zsh-5.9-14.fc40.x86_64.rpm
 ```
 
-You can run this script and provide the relative path to that directory. It will
-generate an SBOM from those files.
+You can run this script and provide the relative/absolute path to that
+directory. It will generate an SBOM from those files. It should walk
+the whole entire tree and find anything deeper.
 
 ```
 usage: RPMs2SBOM [-h] [--out OUT] dir
@@ -39,14 +45,13 @@ options:
 Running with the only required argument:
 
 ```
-$ python ./rpmsign-uploader.py ../pkgs/
+$ python ./rpms2sbom.py ../pkgs/
 Wrote sbom: sbom.json
 ```
 
-Which we can examine like this:
+Which we can examine like this with `jq . < sbom.json`:
 
 ```json
-$ jq . < sbom.json
 {
   "SPDXID": "SPDXRef-DOCUMENT",
   "creationInfo": {
